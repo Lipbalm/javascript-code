@@ -52,10 +52,14 @@ let getData = () => {
     ];
 }
 const data = getData();
-data.forEach((v,a,i) => {
-    for(let [key,value] of Object.entries(v)){
-        for(let [k,val] of Object.entries(value)){
-            console.log(`${k} : ${val}`);
-        }
-    }
-});
+// data.forEach((v,a,i) => {
+//     for(let [key,value] of Object.entries(v)){
+//         for(let [k,val] of Object.entries(value)){
+//             console.log(`${k} : ${val}`);
+//         }
+//     }
+// });
+
+for (let [key, value] of Object.entries(data[0].product)) {
+    console.log( key);
+}
