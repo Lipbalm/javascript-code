@@ -1,16 +1,21 @@
 let totalItemList = [];
 const getTagNm = (text, name) => `<${name}>${text}</${name}>`;
-const getObj = (k, v) => {return {key : k, value : v}};
+const getObj = (k, v, f) => {return {itemobj : { key : k, value : v, finish : f}}};
 const getHtmlObjKey = (obj) => obj.id.split("_")[1];
 const getChildElementById = (parent, tofind) =>{
-    parent.children.forEach( element => {
-       if(v.id === tofind){
-           return v;
-       } 
-    });
+    for(let i = 0; i <= parent.children.length; i++){
+        if(parent.children[i].id === tofind) {
+            return parent.children[i]
+        }
+    }
+    // parent.children.forEach(element => {
+    //    if(v.id === tofind){
+    //        return v;
+    //    } 
+    // });
 };
 const addData = (list, k, v) => {
-    localStorage.setItem(k,v);
+    //localStorage.setItem(k,v);
     return list.push(getObj(k,v));
 };
 const getMaxKey = (list = []) => {
@@ -30,6 +35,8 @@ const getAllStorage = (list = []) => {
     return list;
 };
 const createItem = (key,item) => {
+    //비구조화 할당 추가...
+
     let innerDiv = createDiv(`div_${key}`, "item_div");
     let itemli = document.createElement("li");
     let finishButton = document.createElement("button");
@@ -115,15 +122,23 @@ const init = () => {
 const finishTodo = (event) => {
     const itemKey = getHtmlObjKey(event.srcElement);
     const mainDiv = document.getElementById("main_div");
-    const repli =  getChildElementById(getChildElementById(mainDiv, `div_${itemKey}`),`li_${itemKey}`);
+    let selectionli =  getChildElementById(getChildElementById(mainDiv, `div_${itemKey}`),`li_${itemKey}`);
     
     //insert <del> to repli...
-    
+    if (selectionli.classList.contains("finish")){
+        selectionli.classList.remove("finish");
+    }else{
+        selectionli.classList.add("finish");
+    }
 };   
 
 //delete click
 const deleteTodo = (event) =>{
+    const itemKey = getHtmlObjKey(event.srcElement);
+    const mainDiv = document.getElementById("main_div");
+    let selectionDiv = getChildElementById(mainDiv, `div_${itemKey}`);
 
+    selectionDiv.remove();
 };
 
 init();

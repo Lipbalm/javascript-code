@@ -5,3 +5,7 @@
 .item_div{
     width : 100%;
 }
+
+.finish{
+    text-decoration: line-through;
+}
