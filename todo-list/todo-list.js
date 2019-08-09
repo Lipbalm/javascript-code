@@ -1,13 +1,15 @@
 let totalItemList = [];
 //const getTagNm = (text, name) => `<${name}>${text}</${name}>`;
-const getObj = (k, v, f) => {return {itemObj : { key : k, value : v, fin : f}}};
-const getHtmlObjKey = (obj) => obj.id.split("_")[1];
-const addData = (list, k, v) => list.push(getObj(k,v,"n"));
+const getObj = (k, v, f) => {
+    return { itemObj: { key: k, value: v, fin: f } };
+};
+const getHtmlObjKey = obj => obj.id.split("_")[1];
+const addData = (list, k, v) => list.push(getObj(k, v, "n"));
 
-const getChildElementById = (parent, tofind) =>{
-    for(let i = 0; i <= parent.children.length; i++){
-        if(parent.children[i].id === tofind) {
-            return parent.children[i]
+const getChildElementById = (parent, tofind) => {
+    for (let i = 0; i <= parent.children.length; i++) {
+        if (parent.children[i].id === tofind) {
+            return parent.children[i];
         }
     }
 };
@@ -15,25 +17,24 @@ const getChildElementById = (parent, tofind) =>{
 const getMaxKey = (list = []) => {
     let res = 0;
     list.forEach(v => {
-        if(v.itemObj.key > res){
+        if (v.itemObj.key > res) {
             res = v.itemObj.key;
         }
-    })
+    });
     return res;
 };
 const getAllStorage = (list = []) => {
     const keys = Object.keys(localStorage);
     let obj;
     keys.forEach(k => {
-        obj = JSON.parse(localStorage.getItem(k))
-        const {key, value, fin} = obj.itemObj;
+        obj = JSON.parse(localStorage.getItem(k));
+        const { key, value, fin } = obj.itemObj;
         //list.push(getObj(Number(k) ,)); //type string -> number;
         list.push(getObj(key, value, fin));
     });
     return list;
 };
 const createItem = (key, value, fin) => {
-    //비구조화 할당 추가..
     let innerDiv = createDiv(`div_${key}`, "item_div");
     let itemli = document.createElement("li");
     let finishButton = document.createElement("button");
@@ -47,7 +48,7 @@ const createItem = (key, value, fin) => {
 
     itemli.innerText = value;
 
-    if(fin === "f"){
+    if (fin === "f") {
         itemli.classList.add("finish");
     }
 
@@ -55,8 +56,8 @@ const createItem = (key, value, fin) => {
     deleteButton.innerText = "삭제";
 
     //add button event
-    finishButton.addEventListener("click",finishTodo);
-    deleteButton.addEventListener("click",deleteTodo);
+    finishButton.addEventListener("click", finishTodo);
+    deleteButton.addEventListener("click", deleteTodo);
 
     innerDiv.appendChild(checkBox);
     innerDiv.appendChild(itemli);
@@ -70,7 +71,7 @@ const createDiv = (id, attCls) => {
     let div = document.createElement("div");
     div.id = id;
     div.classList.add(attCls);
-    return div
+    return div;
 };
 
 const createInputBox = (type, id) => {
@@ -80,20 +81,20 @@ const createInputBox = (type, id) => {
     return res;
 };
 
-const addItem = (event) => {
+const addItem = event => {
     if (event.keyCode === 13) {
         let inputBox = document.getElementById("inputBox");
 
         if (inputBox.value !== "") {
             let mainDiv = document.getElementById("main_div");
-            const maxKey = getMaxKey(totalItemList) + 1;//new SeqNo
+            const maxKey = getMaxKey(totalItemList) + 1; //new SeqNo
             const currentItem = createItem(maxKey, inputBox.value, "n");
             //appendHtml(currentItem);
             addData(totalItemList, maxKey, inputBox.value);
 
-            if(mainDiv.firstChild === null){
+            if (mainDiv.firstChild === null) {
                 mainDiv.appendChild(currentItem);
-            }else{
+            } else {
                 mainDiv.insertBefore(currentItem, mainDiv.firstChild);
             }
             inputBox.value = "";
@@ -101,7 +102,7 @@ const addItem = (event) => {
     }
 };
 
-const appendHtml = (htmlObj) => {
+const appendHtml = htmlObj => {
     const htmlBody = document.querySelector("body");
     let docfrag = document.createDocumentFragment();
     docfrag.appendChild(htmlObj);
@@ -113,50 +114,53 @@ const init = () => {
     let mainDiv = createDiv("main_div", "main_div");
     let submission = document.createElement("button");
 
-    //enter  
+    //enter
     inputBox.addEventListener("keypress", addItem);
     appendHtml(inputBox);
 
     //submit
-    submission.innerText = "저장"
+    submission.innerText = "저장";
     submission.id = "submission";
     submission.addEventListener("click", submitData);
     appendHtml(submission);
- 
+
     totalItemList = getAllStorage(totalItemList);
     totalItemList.forEach(v => {
-        const {key, value, fin} = v.itemObj;
+        const { key, value, fin } = v.itemObj;
         mainDiv.appendChild(createItem(key, value, fin));
     });
     appendHtml(mainDiv);
 };
 
 //finish click
-const finishTodo = (event) => {
+const finishTodo = event => {
     const itemKey = Number(getHtmlObjKey(event.srcElement));
     const mainDiv = document.getElementById("main_div");
-    let selectionli =  getChildElementById(getChildElementById(mainDiv, `div_${itemKey}`),`li_${itemKey}`);
+    let selectionli = getChildElementById(
+        getChildElementById(mainDiv, `div_${itemKey}`),
+        `li_${itemKey}`
+    );
 
     //insert line to repli...
-    if (selectionli.classList.contains("finish")){
+    if (selectionli.classList.contains("finish")) {
         selectionli.classList.remove("finish");
         totalItemList.forEach(v => {
-            if(v.itemObj.key === itemKey) {
-                v.itemObj.fin = "n"
+            if (v.itemObj.key === itemKey) {
+                v.itemObj.fin = "n";
             }
         });
-    }else{
+    } else {
         selectionli.classList.add("finish");
         totalItemList.forEach(v => {
-            if(v.itemObj.key === itemKey) {
-                v.itemObj.fin = "f"
+            if (v.itemObj.key === itemKey) {
+                v.itemObj.fin = "f";
             }
         });
     }
-};   
+};
 
 //delete click
-const deleteTodo = (event) =>{
+const deleteTodo = event => {
     const itemKey = Number(getHtmlObjKey(event.srcElement));
     const mainDiv = document.getElementById("main_div");
     let selectionDiv = getChildElementById(mainDiv, `div_${itemKey}`);
@@ -165,12 +169,11 @@ const deleteTodo = (event) =>{
 };
 
 const submitData = () => {
-
     localStorage.clear();
 
-    totalItemList.forEach( v => {
+    totalItemList.forEach(v => {
         localStorage.setItem(v.itemObj.key, JSON.stringify(v));
     });
-}
+};
 
 init();
