@@ -33,7 +33,7 @@ const getAllStorage = (list = []) => {
     return list;
 };
 const createItem = (key, value, fin) => {
-    //비구조화 할당 추가..
+    
     let innerDiv = createDiv(`div_${key}`, "item_div");
     let itemli = document.createElement("li");
     let finishButton = document.createElement("button");
