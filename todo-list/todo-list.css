@@ -1,11 +1,63 @@
+.input_box{
+    position: relative;
+    top: 10%;
+    left: 50%;
+    border-left: transparent;
+    border-right: transparent;
+    border-top: transparent;
+    border-color:black;
+    /*border-bottom:black;*/
+    outline: none;
+    font-size:30px;
+    width: 150px;
+    height: 35px;
+    
+}
+.sub_btn{
+    
+}
+
+
+.check_box{
+    width:15px;
+    height: 15px;
+}
+
 .main_div{
-    width : 50%;
+    position: relative;
+    width: 500px;
+    height: 1000px;
+    top: 3%;
+    left: 50%;
+
+    margin:50px;
 }
 
 .item_div{
-    width : 100%;
+    /* position: absolute; */
+    width: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
 }
 
 .finish{
     text-decoration: line-through;
+}
+
+.finish_btn{
+    border: transparent;
+    margin:5px;
+    outline: none;
+    background-color:white;
+}
+
+.finish_btn:focus{
+    background-color:green;
+}
+
+.delete_btn{
+    border: transparent;
+    margin:5px;
+    outline: none;
 }

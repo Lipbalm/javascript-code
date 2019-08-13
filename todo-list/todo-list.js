@@ -1,7 +1,7 @@
 let totalItemList = [];
 //const getTagNm = (text, name) => `<${name}>${text}</${name}>`;
 const getObj = (k, v, f) => {return {itemObj : { key : k, value : v, fin : f}}};
-const getHtmlObjKey = (obj) => obj.id.split("_")[1];
+const getHtmlObjKey = (obj) => obj.id.split("_")[2];
 const addData = (list, k, v) => list.push(getObj(k,v,"n"));
 
 const getChildElementById = (parent, tofind) =>{
@@ -38,12 +38,21 @@ const createItem = (key, value, fin) => {
     let itemli = document.createElement("li");
     let finishButton = document.createElement("button");
     let deleteButton = document.createElement("button");
+    //let check = document.createElement("i");
+
+    //check.classList.add("fas", "fa-check");
 
     //set Id
-    let checkBox = createInputBox("checkBox", `checkBox_${key}`);
+    let checkBox = createInputBox("checkBox", `check_box_${key}`,"check_box");
     itemli.id = `li_${key}`;
-    finishButton.id = `finishBtn_${key}`;
-    deleteButton.id = `deleteBtn_${key}`;
+    finishButton.id = `finish_btn_${key}`;
+    deleteButton.id = `delete_btn_${key}`;
+
+    finishButton.classList.add("finish_btn");
+    finishButton.classList.add("fas","fa-check");
+
+    deleteButton.classList.add("delete_btn");
+    deleteButton.classList.add("fas", "fa-minus");
 
     itemli.innerText = value;
 
@@ -51,8 +60,8 @@ const createItem = (key, value, fin) => {
         itemli.classList.add("finish");
     }
 
-    finishButton.innerText = "완료";
-    deleteButton.innerText = "삭제";
+    //finishButton.innerText = "완료";
+    //deleteButton.innerText = "삭제";
 
     //add button event
     finishButton.addEventListener("click",finishTodo);
@@ -73,16 +82,17 @@ const createDiv = (id, attCls) => {
     return div
 };
 
-const createInputBox = (type, id) => {
+const createInputBox = (type, id, cls) => {
     let res = document.createElement("input");
     res.id = id;
     res.setAttribute("type", type);
+    res.classList.add(cls);
     return res;
 };
 
 const addItem = (event) => {
     if (event.keyCode === 13) {
-        let inputBox = document.getElementById("inputBox");
+        let inputBox = document.getElementById("input_box");
 
         if (inputBox.value !== "") {
             let mainDiv = document.getElementById("main_div");
@@ -109,7 +119,7 @@ const appendHtml = (htmlObj) => {
 };
 
 const init = () => {
-    let inputBox = createInputBox("input", "inputBox");
+    let inputBox = createInputBox("input", "input_box", "input_box");
     let mainDiv = createDiv("main_div", "main_div");
     let submission = document.createElement("button");
 
@@ -119,7 +129,8 @@ const init = () => {
 
     //submit
     submission.innerText = "저장"
-    submission.id = "submission";
+    submission.id = "sub_btn";
+    submission.classList.add("sub_btn");
     submission.addEventListener("click", submitData);
     appendHtml(submission);
  
