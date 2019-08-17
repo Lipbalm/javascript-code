@@ -6,21 +6,15 @@
     border-right: transparent;
     border-top: transparent;
     border-color:black;
-    /*border-bottom:black;*/
     outline: none;
     font-size:30px;
-    width: 150px;
+    width: 400px;
     height: 35px;
-    
 }
-.sub_btn{
-    
-}
-
 
 .check_box{
-    width:15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
 }
 
 .main_div{
@@ -29,7 +23,6 @@
     height: 1000px;
     top: 3%;
     left: 50%;
-
     margin:50px;
 }
 
@@ -38,7 +31,6 @@
     width: 200px;
     margin-top: 20px;
     margin-bottom: 20px;
-    
 }
 
 .finish{
@@ -48,16 +40,47 @@
 .finish_btn{
     border: transparent;
     margin:5px;
+    padding: 15px 24px;
     outline: none;
-    background-color:white;
+    background-color:white; 
 }
 
-.finish_btn:focus{
-    background-color:green;
+.finish_btn:hover{
+    background-color:gray;
 }
 
 .delete_btn{
     border: transparent;
+    padding: 15px 24px;
     margin:5px;
     outline: none;
+}
+.delete_btn:hover{
+    background-color:gray;
+}
+
+.sub_btn{
+    border: transparent;
+    margin:5px;
+    padding: 15px 24px;
+    outline: none;
+    background-color:white;
+
+    position: relative;
+    top: 10%;
+    left: 50%;
+}
+
+.sub_btn:hover{
+    background-color:gray;
+}
+
+.item_li{
+    font-size:30px;
+    widows: 380px;
+    height: 30px;
+}
+
+.mouse_over{
+    visibility: visible;
 }

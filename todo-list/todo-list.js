@@ -1,7 +1,7 @@
 let totalItemList = [];
 //const getTagNm = (text, name) => `<${name}>${text}</${name}>`;
 const getObj = (k, v, f) => {return {itemObj : { key : k, value : v, fin : f}}};
-const getHtmlObjKey = (obj) => obj.id.split("_")[2];
+const getHtmlObjKey = (obj) => obj.id.split("_")[obj.id.split("_").length - 1];
 const addData = (list, k, v) => list.push(getObj(k,v,"n"));
 
 const getChildElementById = (parent, tofind) =>{
@@ -48,11 +48,13 @@ const createItem = (key, value, fin) => {
     finishButton.id = `finish_btn_${key}`;
     deleteButton.id = `delete_btn_${key}`;
 
+    itemli.classList.add("item_li");
+
     finishButton.classList.add("finish_btn");
-    finishButton.classList.add("fas","fa-check");
+    finishButton.classList.add("fas","fa-check","fa-2x");
 
     deleteButton.classList.add("delete_btn");
-    deleteButton.classList.add("fas", "fa-minus");
+    deleteButton.classList.add("fas", "fa-minus","fa-2x");
 
     itemli.innerText = value;
 
@@ -62,6 +64,9 @@ const createItem = (key, value, fin) => {
 
     //finishButton.innerText = "완료";
     //deleteButton.innerText = "삭제";
+
+    innerDiv.addEventListener("mouseover", onMouseOverItemDiv );
+    innerDiv.addEventListener("mouseout", onMouseOutItemDiv );
 
     //add button event
     finishButton.addEventListener("click",finishTodo);
@@ -128,9 +133,9 @@ const init = () => {
     appendHtml(inputBox);
 
     //submit
-    submission.innerText = "저장"
     submission.id = "sub_btn";
     submission.classList.add("sub_btn");
+    submission.classList.add("fas","fa-archive","fa-2x");
     submission.addEventListener("click", submitData);
     appendHtml(submission);
  
@@ -182,6 +187,30 @@ const submitData = () => {
     totalItemList.forEach( v => {
         localStorage.setItem(v.itemObj.key, JSON.stringify(v));
     });
+}
+
+const onMouseOverItemDiv = (e) =>{
+    const itemKey = Number(getHtmlObjKey(e.srcElement));
+    let item_div = document.getElementById(`div_${itemKey}`);
+    let checkBox = item_div.querySelector(`#check_box_${itemKey}`);
+    let finishButton = item_div.querySelector(`#finish_btn_${itemKey}`);
+    let deleteButton = item_div.querySelector(`#delete_btn_${itemKey}`);
+
+    checkBox.classList.add("mouse_over");
+    finishButton.classList.add("mouse_over");
+    deleteButton.classList.add("mouse_over");
+}
+
+const onMouseOutItemDiv = (e) => {
+    const itemKey = Number(getHtmlObjKey(e.srcElement));
+    let item_div = document.getElementById(`div_${itemKey}`);
+    let checkBox = item_div.querySelector(`#check_box_${itemKey}`);
+    let finishButton = item_div.querySelector(`#finish_btn_${itemKey}`);
+    let deleteButton = item_div.querySelector(`#delete_btn_${itemKey}`);
+
+    checkBox.classList.remove("mouse_over");
+    finishButton.classList.remove("mouse_over");
+    deleteButton.classList.remove("mouse_over");
 }
 
 init();
