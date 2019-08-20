@@ -1,7 +1,13 @@
+head,body{
+    text-align:center;
+    align:center;
+    height: 100%;
+    width: 100%;
+}
+
 .input_box{
     position: relative;
     top: 10%;
-    left: 50%;
     border-left: transparent;
     border-right: transparent;
     border-top: transparent;
@@ -10,6 +16,7 @@
     font-size:30px;
     width: 400px;
     height: 35px;
+    margin: auto;
 }
 
 .check_box{
@@ -18,17 +25,18 @@
 }
 
 .main_div{
-    position: relative;
     width: 500px;
     height: 1000px;
-    top: 3%;
-    left: 50%;
-    margin:50px;
+    top: 20%;
+    margin:auto;
+    padding-top : 2%; 
+    
 }
 
 .item_div{
-    /* position: absolute; */
-    width: 200px;
+    text-align: left;
+    width: 400px;
+    height: 40;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -40,9 +48,10 @@
 .finish_btn{
     border: transparent;
     margin:5px;
-    padding: 15px 24px;
+    padding: 8px 15px;
     outline: none;
-    background-color:white; 
+    display: none;
+    
 }
 
 .finish_btn:hover{
@@ -51,9 +60,11 @@
 
 .delete_btn{
     border: transparent;
-    padding: 15px 24px;
+    padding: 8px 15px;
     margin:5px;
     outline: none;
+    display: none;
+    
 }
 .delete_btn:hover{
     background-color:gray;
@@ -62,13 +73,12 @@
 .sub_btn{
     border: transparent;
     margin:5px;
-    padding: 15px 24px;
+    padding: 8px 15px;
     outline: none;
-    background-color:white;
-
+    background-color:transparent;
     position: relative;
-    top: 10%;
-    left: 50%;
+    margin:auto;
+    
 }
 
 .sub_btn:hover{
@@ -77,10 +87,22 @@
 
 .item_li{
     font-size:30px;
-    widows: 380px;
+    /*widows: 300px;*/
     height: 30px;
+    width: 260px;
+    
+    text-align: left;
+    display:inline-table;
+    
 }
 
 .mouse_over{
-    visibility: visible;
+    display: initial;
+}
+
+.background_div{
+    height: 100%;
+    width: 100%;
+    background-image: url(copy_images/milky-way.jpg);
+    background-size: cover
 }

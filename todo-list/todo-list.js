@@ -43,7 +43,7 @@ const createItem = (key, value, fin) => {
     //check.classList.add("fas", "fa-check");
 
     //set Id
-    let checkBox = createInputBox("checkBox", `check_box_${key}`,"check_box");
+    //let checkBox = createInputBox("checkBox", `check_box_${key}`,"check_box");
     itemli.id = `li_${key}`;
     finishButton.id = `finish_btn_${key}`;
     deleteButton.id = `delete_btn_${key}`;
@@ -72,7 +72,7 @@ const createItem = (key, value, fin) => {
     finishButton.addEventListener("click",finishTodo);
     deleteButton.addEventListener("click",deleteTodo);
 
-    innerDiv.appendChild(checkBox);
+    //innerDiv.appendChild(checkBox);
     innerDiv.appendChild(itemli);
     innerDiv.appendChild(finishButton);
     innerDiv.appendChild(deleteButton);
@@ -127,24 +127,28 @@ const init = () => {
     let inputBox = createInputBox("input", "input_box", "input_box");
     let mainDiv = createDiv("main_div", "main_div");
     let submission = document.createElement("button");
+    let backgroundDiv  = createDiv("background_div","background_div");
 
     //enter  
     inputBox.addEventListener("keypress", addItem);
-    appendHtml(inputBox);
+    backgroundDiv.appendChild(inputBox)
 
     //submit
     submission.id = "sub_btn";
     submission.classList.add("sub_btn");
     submission.classList.add("fas","fa-archive","fa-2x");
     submission.addEventListener("click", submitData);
-    appendHtml(submission);
+    backgroundDiv.appendChild(submission);
  
     totalItemList = getAllStorage(totalItemList);
     totalItemList.forEach(v => {
         const {key, value, fin} = v.itemObj;
         mainDiv.appendChild(createItem(key, value, fin));
     });
-    appendHtml(mainDiv);
+
+    backgroundDiv.appendChild(mainDiv);
+
+    appendHtml(backgroundDiv);
 };
 
 //finish click
@@ -192,11 +196,11 @@ const submitData = () => {
 const onMouseOverItemDiv = (e) =>{
     const itemKey = Number(getHtmlObjKey(e.srcElement));
     let item_div = document.getElementById(`div_${itemKey}`);
-    let checkBox = item_div.querySelector(`#check_box_${itemKey}`);
+    //let checkBox = item_div.querySelector(`#check_box_${itemKey}`);
     let finishButton = item_div.querySelector(`#finish_btn_${itemKey}`);
     let deleteButton = item_div.querySelector(`#delete_btn_${itemKey}`);
 
-    checkBox.classList.add("mouse_over");
+    //checkBox.classList.add("mouse_over");
     finishButton.classList.add("mouse_over");
     deleteButton.classList.add("mouse_over");
 }
@@ -204,11 +208,11 @@ const onMouseOverItemDiv = (e) =>{
 const onMouseOutItemDiv = (e) => {
     const itemKey = Number(getHtmlObjKey(e.srcElement));
     let item_div = document.getElementById(`div_${itemKey}`);
-    let checkBox = item_div.querySelector(`#check_box_${itemKey}`);
+    //let checkBox = item_div.querySelector(`#check_box_${itemKey}`);
     let finishButton = item_div.querySelector(`#finish_btn_${itemKey}`);
     let deleteButton = item_div.querySelector(`#delete_btn_${itemKey}`);
 
-    checkBox.classList.remove("mouse_over");
+    //checkBox.classList.remove("mouse_over");
     finishButton.classList.remove("mouse_over");
     deleteButton.classList.remove("mouse_over");
 }
