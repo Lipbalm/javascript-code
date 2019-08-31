@@ -1,6 +1,5 @@
 head,body{
     text-align:center;
-    align:center;
     height: 100%;
     width: 100%;
 }
@@ -11,12 +10,14 @@ head,body{
     border-left: transparent;
     border-right: transparent;
     border-top: transparent;
-    border-color:black;
+    border-color:white;
     outline: none;
     font-size:30px;
     width: 400px;
     height: 35px;
     margin: auto;
+    background-color: transparent;
+    color:white;
 }
 
 .check_box{
@@ -26,10 +27,9 @@ head,body{
 
 .main_div{
     width: 500px;
-    height: 1000px;
-    top: 20%;
+    height: 700px;
     margin:auto;
-    padding-top : 2%; 
+    margin-top: 3%; 
     
 }
 
@@ -86,11 +86,11 @@ head,body{
 }
 
 .item_li{
-    font-size:30px;
+    font-size:55px;
     /*widows: 300px;*/
     height: 30px;
     width: 260px;
-    
+    color: white;
     text-align: left;
     display:inline-table;
     
@@ -101,8 +101,15 @@ head,body{
 }
 
 .background_div{
+    position: absolute;
     height: 100%;
     width: 100%;
-    background-image: url(copy_images/milky-way.jpg);
+    padding: 100%,100%,100%,100%;
+    background-image: url(copy_images/the-atacama-desert.jpg);
     background-size: cover
+}
+
+.fa-archive, .fa-check, .fa-minus{
+    color : white;
+    background-color: transparent;
 }

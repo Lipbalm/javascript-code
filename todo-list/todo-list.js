@@ -135,8 +135,8 @@ const init = () => {
 
     //submit
     submission.id = "sub_btn";
-    submission.classList.add("sub_btn");
-    submission.classList.add("fas","fa-archive","fa-2x");
+    //submission.classList.add("sub_btn");
+    submission.classList.add("fas","fa-archive","fa-2x","sub_btn");
     submission.addEventListener("click", submitData);
     backgroundDiv.appendChild(submission);
  
