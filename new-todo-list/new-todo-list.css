@@ -1,0 +1,115 @@
+head,body{
+    text-align:center;
+    height: 100%;
+    width: 100%;
+}
+
+.input_box{
+    position: relative;
+    top: 10%;
+    border-left: transparent;
+    border-right: transparent;
+    border-top: transparent;
+    border-color:white;
+    outline: none;
+    font-size:30px;
+    width: 400px;
+    height: 35px;
+    margin: auto;
+    background-color: transparent;
+    color:white;
+}
+
+.check_box{
+    width: 20px;
+    height: 20px;
+}
+
+.main_div{
+    width: 500px;
+    height: 700px;
+    margin:auto;
+    margin-top: 3%; 
+    
+}
+
+.item_div{
+    text-align: left;
+    width: 400px;
+    height: 40;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.finish{
+    text-decoration: line-through;
+}
+
+.finish_btn{
+    border: transparent;
+    margin:5px;
+    padding: 8px 15px;
+    outline: none;
+    display: none;
+    
+}
+
+.finish_btn:hover{
+    background-color:gray;
+}
+
+.delete_btn{
+    border: transparent;
+    padding: 8px 15px;
+    margin:5px;
+    outline: none;
+    display: none;
+    
+}
+.delete_btn:hover{
+    background-color:gray;
+}
+
+.sub_btn{
+    border: transparent;
+    margin:5px;
+    padding: 8px 15px;
+    outline: none;
+    background-color:transparent;
+    position: relative;
+    margin:auto;
+    
+}
+
+.sub_btn:hover{
+    background-color:gray;
+}
+
+.item_li{
+    font-size:55px;
+    /*widows: 300px;*/
+    height: 30px;
+    width: 260px;
+    color: white;
+    text-align: left;
+    display:inline-table;
+    
+}
+
+.mouse_over{
+    display: initial;
+}
+
+.background_div{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 100%,100%,100%,100%;
+    background-image: url(copy_images/the-atacama-desert.jpg);
+    background-size: cover
+}
+
+.fa-archive, .fa-check, .fa-minus{
+    color : white;
+    background-color: transparent;
+}
